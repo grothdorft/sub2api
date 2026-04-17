@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	defaultTimeout = 15 * time.Second
+	defaultTimeout = 30 * time.Second
 	userAgent      = "sub2api/1.0 (subscription converter)"
 )
 
@@ -88,7 +88,12 @@ func ParseNodes(content string) []string {
 }
 
 // isBase64 performs a naive check to determine if a string is likely base64-encoded.
+// Note: this check allows newlines to be stripped before testing, which helps with
+// some subscription providers that wrap lines at 76 characters.
 func isBase64(s string) bool {
+	// Strip newlines before checking, some providers wrap base64 output
+	s = strings.ReplaceAll(s, "\n", "")
+	s = strings.ReplaceAll(s, "\r", "")
 	if len(s) == 0 || len(s)%4 != 0 {
 		return false
 	}
