@@ -15,7 +15,8 @@ import (
 )
 
 const (
-	default	defaultHost    = "127.0.0.1" // changed from 0.0.0.0 - prefer localhost-only by default for personal use
+	defaultHost    = "127.0.0.1" // changed from 0.0.0.0 - prefer localhost-only by default for personal use
+	defaultPort    = 8080
 	appName        = "sub2api"
 	appVersion     = "dev"
 )
