@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	defaultTimeout = 15 * time.Second
+	defaultTimeout = 30 * time.Second
 	userAgent      = "sub2api/1.0 (subscription converter)"
 )
 
