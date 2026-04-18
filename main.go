@@ -15,8 +15,7 @@ import (
 )
 
 const (
-	defaultPort    = 8080
-	defaultHost    = "127.0.0.1" // changed from 0.0.0.0 - prefer localhost-only by default for personal use
+	default	defaultHost    = "127.0.0.1" // changed from 0.0.0.0 - prefer localhost-only by default for personal use
 	appName        = "sub2api"
 	appVersion     = "dev"
 )
@@ -46,8 +45,8 @@ func main() {
 	server := &http.Server{
 		Addr:         addr,
 		Handler:      router,
-		ReadTimeout:  30 * time.Second, // added timeouts to avoid hanging connections
-		WriteTimeout: 30 * time.Second,
+		ReadTimeout:  15 * time.Second, // reduced from 30s - 15s is plenty for local use
+		WriteTimeout: 60 * time.Second, // increased from 30s - some subscriptions can be slow to fetch
 		IdleTimeout:  60 * time.Second,
 	}
 
