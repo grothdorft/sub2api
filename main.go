@@ -49,6 +49,7 @@ func main() {
 		ReadTimeout:  15 * time.Second,  // reduced from 30s - 15s is plenty for local use
 		WriteTimeout: 90 * time.Second,  // bumped to 90s - some remote subs are really slow
 		IdleTimeout:  120 * time.Second, // increased - keep connections alive longer for repeated requests
+		MaxHeaderBytes: 1 << 20,         // 1MB - explicit limit, default is also 1MB but good to be clear
 	}
 
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
