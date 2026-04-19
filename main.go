@@ -46,9 +46,9 @@ func main() {
 	server := &http.Server{
 		Addr:         addr,
 		Handler:      router,
-		ReadTimeout:  15 * time.Second, // reduced from 30s - 15s is plenty for local use
-		WriteTimeout: 60 * time.Second, // increased from 30s - some subscriptions can be slow to fetch
-		IdleTimeout:  60 * time.Second,
+		ReadTimeout:  15 * time.Second,  // reduced from 30s - 15s is plenty for local use
+		WriteTimeout: 90 * time.Second,  // bumped to 90s - some remote subs are really slow
+		IdleTimeout:  120 * time.Second, // increased - keep connections alive longer for repeated requests
 	}
 
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
